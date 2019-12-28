@@ -1,0 +1,5 @@
+nodeName: agent005
+namespace: jenkins
+nodeSecret: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+configMap: aws-qa-us-east
+image: shavitnetzer/jnlp-slave:001

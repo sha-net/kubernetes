@@ -1,0 +1,32 @@
+---
+# Source: jenkins-agent/templates/pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: agent01
+  namespace: jenkins
+  labels:
+    name: agent01
+spec:
+  containers:
+  - name: agent01
+    image: shavitnetzer/jnlp-slave:001
+    env:
+      - name: JENKINS_URL
+        value: "http://jenkins:8080"
+      - name: JENKINS_AGENT_NAME
+        value: "agent01"
+      - name: JENKINS_SECRET
+        value: "da5a9c74d507e7b56966d7b6e8d80d9f81fb23d23cc142f8ab6f663627a10f20"
+    volumeMounts:
+     - name: config-volume
+       mountPath: /home/jenkins/.kube/config
+     - name: dockersocket
+       mountPath: /var/run/docker.sock
+  volumes:
+    - name: config-volume
+      configMap:
+        name: management-qa
+    - name: dockersocket
+      hostPath:
+        path: /var/run/docker.sock
