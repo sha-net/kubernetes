@@ -33,3 +33,10 @@ kubectl create configmap aws-qa-us-east aws-qa-us-east-config.yaml -n jenkins
 #-> Copy Existing Node template
 # ------ to create a node use the helm (you can edit the valus or use --set)
 helm upgrade --install jenkins-agent005 ./jenkins-agent
+# ------ Setting Azure DevOps git hook -----
+# on AzureDevOps -> Repo file (shavit-test) -> clone -> Generate git credentials
+#-> on Jenkins item -> config -> source code:
+#-> put the https URL + the user/pass from the AzureDevOps above
+#-> on Build triggers: check github hook trigger .... + Poll SCM (blank)
+# on AzureDevOps -> Project Settings -> service hook -> jenkins (select repository, base url, jenkins user,pass)
+
